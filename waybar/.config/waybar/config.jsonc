@@ -1,0 +1,108 @@
+{
+    "layer": "top",
+    "position": "top",
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "hyprland/language",
+        "custom/lock",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "format": "{icon}",
+        "all-outputs": true
+    },
+    "hyprland/window": {
+        "separate-outputs": true,
+        "max-length": 150
+    },
+    "clock": {
+        "timezone": "Europe/Tallinn",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%d.%m.%Y}",
+        "format": " {:%H:%M}"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "on-scroll-up": "brightnessctl s '+10%'",
+        "on-scroll-down": "brightnessctl s '10%-'",
+        "on-click": "((( $(brightnessctl g) == 100 )) && brightnessctl s '0') || (brightnessctl s '+10%')",
+        "format-icons": [
+            ""
+        ]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon}",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "hyprland/language": {
+        "format": " {short}"
+    },
+    "network": {
+        "interface": "wlan0",
+        "format": "󰤯",
+        "format-wifi": "{icon} {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "{ifname}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ]
+    },
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "hyprlock &",
+        "format": ""
+    },
+    "custom/power": {
+        "tooltip": false,
+        "on-click": "hyprctl dispatch exit",
+        "format": "⏻"
+    }
+}

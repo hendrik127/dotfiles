@@ -1,0 +1,130 @@
+@import url("./mocha.css");
+
+* {
+  font-family: "Hack Nerd Font", "Fira Code Nerd Font", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  min-height: 0;
+}
+
+window#waybar {
+  color: @text;
+  background: @base;
+}
+
+/* --- Workspaces Module --- */
+#workspaces {
+  margin: 5px 0 5px 1rem;
+  background-color: @surface0;
+  border-radius: 1.5rem;
+}
+
+#workspaces button {
+  padding: 0.5rem;
+  color: @text;
+}
+
+#workspaces button.active {
+  color: @mauve;
+}
+
+#workspaces button:hover {
+  color: @lavender;
+  background: @surface1;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+
+/* --- General Module Styling --- */
+#clock,
+#pulseaudio,
+#backlight,
+#battery,
+#language,
+#network,
+#custom-lock,
+#custom-power {
+  margin: 5px 0;
+  padding: 0.5rem 1rem;
+  background-color: @surface0;
+}
+
+/* --- Window Module --- */
+#window {
+  margin: 5px 0;
+  padding: 0.5rem 1rem;
+  color: @blue;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+}
+
+/* --- Individual Module Styling --- */
+#clock {
+  color: @mauve;
+  border-radius: 1.5rem;
+}
+
+#battery,
+#battery.charging {
+  color: @green;
+  border-radius: 1.5rem;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#pulseaudio {
+  margin-left: 1rem;
+  color: @maroon;
+  border-radius: 1.5rem 0 0 1.5rem;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#language {
+  color: @lavender;
+}
+
+#network {
+  color: @sky;
+}
+
+#custom-lock {
+  color: @blue;
+  border-radius: 1.5rem;
+}
+
+#custom-power {
+  margin-right: 1rem;
+  color: @red;
+  border-radius: 0 1.5rem 1.5rem 0;
+}
+
+/* --- Icon Sizing (Best with Monospaced Fonts) --- */
+#clock,
+#pulseaudio,
+#backlight,
+#battery,
+#language,
+#network,
+#custom-lock,
+#custom-power {
+  font-size: 14px;
+}
+
+#pulseaudio .icon,
+#backlight .icon,
+#battery .icon,
+#network .icon,
+#language .icon,
+#custom-lock .icon,
+#custom-power .icon {
+  font-size: 18px;
+}
