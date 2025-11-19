@@ -1,6 +1,0 @@
-[submodule "nvim/.config/nvim"]
-	path = nvim/.config/nvim
-	url = https://github.com/hendrik127/kickstart.nvim
-[submodule "tmux/.config/tmux/plugins/tmux-resurrect"]
-	path = tmux/.config/tmux/plugins/tmux-resurrect
-	url  = https://github.com/tmux-plugins/tmux-resurrect
