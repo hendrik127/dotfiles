@@ -20,22 +20,25 @@ vim.pack.add({
 })
 
 
-vim.lsp.config('ruff', {
-  init_options = {
-    settings = {
-      configurationPreference = "editorFirst",
-      -- configurationPreference = "filesystemFirst",
-      -- codeAction = {
-      --   fixViolation = {
-      --     enable = true
-      --   }
-      -- }
-    }
-  }
-})
+-- vim.lsp.config('ruff', {
+--   init_options = {
+--     settings = {
+--       configurationPreference = "editorFirst",
+--       -- configurationPreference = "filesystemFirst",
+--       -- codeAction = {
+--       --   fixViolation = {
+--       --     enable = true
+--       --   }
+--       -- }
+--     }
+--   }
+-- })
+--
+--
+-- vim.lsp.enable('ruff')
 
 
-vim.lsp.enable('ruff')
+
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 
 
