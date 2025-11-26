@@ -9,6 +9,7 @@ vim.o.swapfile = false
 vim.g.mapleader =" " 
 
 
+
 vim.cmd("colorscheme habamax")
 
 vim.pack.add({
