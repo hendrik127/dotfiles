@@ -30,7 +30,9 @@ vim.pack.add({
 
 
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "ruff" },
+})
 
 require("conform").setup({
     formatters_by_ft = {
@@ -58,7 +60,7 @@ require("conform").setup({
 -- })
 --
 --
--- vim.lsp.enable('ruff')
+vim.lsp.enable('ruff')
 
 
 
