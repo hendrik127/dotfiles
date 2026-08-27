@@ -47,3 +47,10 @@ echo '[ -f ~/.config/bash/git-prompt.sh ] && . ~/.config/bash/git-prompt.sh' >> 
 - `nvim` — Neovim config
 - `ghostty` — Ghostty terminal config
 - `bash` — git branch in the bash prompt
+- `hypr` — Hyprland config (`hyprland.conf`, `hypridle.conf`, `hyprlock.conf`,
+  `hyprpaper.conf`). Core-only install on this machine: no waybar, dunst,
+  rofi, thunar, wlogout, grim/slurp/swappy, or brightnessctl — the binds that
+  need them are commented out in `hyprland.conf`, install the tool and
+  uncomment to enable. Set a real `monitor=` line and a wallpaper in
+  `~/Pictures/Wallpapers/` once you know the actual output name
+  (`hyprctl monitors`).
