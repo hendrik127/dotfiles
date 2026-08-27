@@ -20,19 +20,18 @@ Install stow:
 sudo apt-get install -y stow
 ```
 
-Clone this repo and symlink a package from the repo root:
+Clone this repo and symlink all packages from the repo root:
 
 ```sh
 git clone https://github.com/hendrik127/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow -t ~ nvim
-stow -t ~ ghostty
+stow -t ~ */
 ```
 
-Remove a package's symlinks:
+Remove all packages' symlinks:
 
 ```sh
-stow -t ~ -D nvim
+stow -t ~ -D */
 ```
 
 ## Packages
