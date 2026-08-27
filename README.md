@@ -34,17 +34,35 @@ Remove all packages' symlinks:
 stow -t ~ -D */
 ```
 
-Note: the `bash` package only symlinks `~/.config/bash/`. It still needs one
-line in `~/.bashrc` (not tracked here, since it's a stock system file) to
-source it:
+Note: the `bash` package only symlinks `~/.config/bash/`. It still needs two
+lines in `~/.bashrc` (not tracked here, since it's a stock system file):
 
 ```sh
-echo '[ -f ~/.config/bash/git-prompt.sh ] && . ~/.config/bash/git-prompt.sh' >> ~/.bashrc
+cat >> ~/.bashrc << 'EOF'
+
+# Show the current git branch in the prompt (managed in ~/dotfiles)
+[ -f ~/.config/bash/git-prompt.sh ] && . ~/.config/bash/git-prompt.sh
+
+# Prefer snap-installed CLI tools (e.g. nvim v0.12+) over older apt versions
+export PATH="/snap/bin:$PATH"
+EOF
 ```
 
 ## Packages
 
-- `nvim` — Neovim config
+- `nvim` — Neovim config. Requires **Neovim >= 0.12** (for `vim.pack`, the
+  native plugin manager the config uses) — apt on this machine is stuck on
+  0.11, so install via snap: `sudo snap install nvim --classic` (see the
+  `PATH` note above). Also needs a Python `venv` module for Mason to build
+  `basedpyright` — the exact apt package name tracks your `python3 --version`,
+  e.g. `sudo apt-get install -y python3.14-venv`. Everything else (`ruff`,
+  `basedpyright`, `nvim-lspconfig`, `telescope`, `conform`, ...) installs
+  itself on first launch via `vim.pack.add` + `mason-lspconfig`'s
+  `ensure_installed`. LSP (`gd`, hover) and completion are native — no
+  completion plugin. `basedpyright`/`ruff` pick up the current project's
+  Python interpreter automatically: an active `$VIRTUAL_ENV` wins, otherwise
+  it looks for `.venv`/`venv`/`env` at the project root (covers `uv venv`'s
+  default layout).
 - `ghostty` — Ghostty terminal config
 - `bash` — git branch in the bash prompt
 - `hypr` — Hyprland config (`hyprland.conf`, `hypridle.conf`, `hyprlock.conf`,
