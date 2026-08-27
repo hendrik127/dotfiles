@@ -34,7 +34,16 @@ Remove all packages' symlinks:
 stow -t ~ -D */
 ```
 
+Note: the `bash` package only symlinks `~/.config/bash/`. It still needs one
+line in `~/.bashrc` (not tracked here, since it's a stock system file) to
+source it:
+
+```sh
+echo '[ -f ~/.config/bash/git-prompt.sh ] && . ~/.config/bash/git-prompt.sh' >> ~/.bashrc
+```
+
 ## Packages
 
 - `nvim` — Neovim config
 - `ghostty` — Ghostty terminal config
+- `bash` — git branch in the bash prompt
