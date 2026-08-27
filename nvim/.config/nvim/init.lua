@@ -63,6 +63,25 @@ require("conform").setup({
 --
 --
 
+-- In a uv workspace (root pyproject.toml + uv.lock + one shared .venv, but
+-- each member also has its own pyproject.toml), the default root_markers
+-- would stop at the nearest member's pyproject.toml instead of the real
+-- workspace root, so the shared .venv never gets found. uv.lock only exists
+-- at the true root, so prefer that; fall back to the usual markers otherwise.
+local function project_root_dir(bufnr, on_dir)
+    local uv_root = vim.fs.root(bufnr, "uv.lock")
+    local fallback_root = vim.fs.root(bufnr, {
+        "pyrightconfig.json",
+        "pyproject.toml",
+        "setup.py",
+        "setup.cfg",
+        "requirements.txt",
+        "Pipfile",
+        ".git",
+    })
+    on_dir(uv_root or fallback_root)
+end
+
 -- Use the project's own Python interpreter (uv/venv/virtualenv), not a global
 -- one: an active $VIRTUAL_ENV wins, otherwise look for .venv/venv/env at the
 -- project root (uv creates .venv there by default).
@@ -84,6 +103,7 @@ local function find_venv_python(root_dir)
 end
 
 vim.lsp.config("basedpyright", {
+    root_dir = project_root_dir,
     before_init = function(_, config)
         local python_path = find_venv_python(config.root_dir)
         if python_path then
@@ -95,6 +115,7 @@ vim.lsp.config("basedpyright", {
 })
 
 vim.lsp.config("ruff", {
+    root_dir = project_root_dir,
     before_init = function(_, config)
         local python_path = find_venv_python(config.root_dir)
         if python_path then
